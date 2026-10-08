@@ -1,0 +1,7 @@
+[project]
+name = "modulo-ia-artpop"
+version = "0.1.0"
+description = "Modulo BentoML de Recomendacao para o Marketplace ArtPop (Artesanato Pernambucano)"
+dependencies = [
+    "bentoml>=1.3.0",
+]
