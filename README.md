@@ -11,7 +11,7 @@
 * **Turma:** ADS - Embarque Digital
 * **Grupo / Squad:** ArtPop
 * **Membros do Grupo:**
-  * Luiz Fernando Ramos de Toledo (Líder / Integrador) — Matrícula: 2025100598
+  * Luiz Fernando Ramos de Toledo (Líder / Integrador) 
   * Davi Lucas da Silva Pinheiro (Papel e Rastreabilidade)
   * Hugo Vinícius de Lima Mendonça (Entendimento dos dados)
   * Michel dos Santos Serpa (Entendimento do Negócio)
