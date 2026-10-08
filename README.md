@@ -61,7 +61,6 @@ bentoml serve service.py:ModuloArtPopService --port 3000
 Teste 1: Recomendação por Tipologia e Região (RF-01)
 
 Comando:
-Bash
 
 curl -X 'POST' \
   'http://localhost:3000/recomendar_tipologia_regiao' \
@@ -78,7 +77,6 @@ curl -X 'POST' \
   }'
 
 Resultado Esperado:
-JSON
 
 {
   "status": "success",
@@ -100,7 +98,6 @@ JSON
 Teste 2: Foco em Mestre Artesão (RF-02)
 
 Comando:
-Bash
 
 curl -X 'POST' \
   'http://localhost:3000/recomendar_mestre_artesao' \
@@ -109,7 +106,6 @@ curl -X 'POST' \
   -d '{"mestre_id": "mestre_vitalino", "limit": 4}'
 
 Resultado Esperado:
-JSON
 
 {
   "status": "success",
@@ -132,7 +128,6 @@ JSON
 Teste 3: Cold Start para Novos Visitantes (RF-03)
 
 Comando:
-Bash
 
 curl -X 'POST' \
   'http://localhost:3000/cold_start_populares' \
@@ -141,7 +136,6 @@ curl -X 'POST' \
   -d '{"user_id": "usr_novo_1020", "limit": 6}'
 
 Resultado Esperado:
-JSON
 
 {
   "status": "success",
@@ -184,7 +178,6 @@ JSON
 Teste 4: Fallback por Cache (RF-04)
 
 Comando:
-Bash
 
 curl -X 'POST' \
   'http://localhost:3000/fallback_cache' \
@@ -193,7 +186,6 @@ curl -X 'POST' \
   -d '{}'
 
 Resultado Esperado:
-JSON
 
 {
   "status": "fallback_ativo",
