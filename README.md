@@ -58,7 +58,10 @@ bentoml serve service.py:ModuloArtPopService --port 3000
 
 ## 4. Casos de Teste e Evidências de Execução (Validação)
 ### Para comprovar o funcionamento dos endpoints, execute os comandos curl abaixo em um segundo terminal com o servidor ativo:
-### Teste 1: Recomendação por Tipologia e Região (RF-01)
+Teste 1: Recomendação por Tipologia e Região (RF-01)
+
+Comando:
+Bash
 
 curl -X 'POST' \
   'http://localhost:3000/recomendar_tipologia_regiao' \
@@ -74,7 +77,30 @@ curl -X 'POST' \
     "limit": 4
   }'
 
-### Teste 2: Foco em Mestre Artesão (RF-02)
+Resultado Esperado:
+JSON
+
+{
+  "status": "success",
+  "strategy_applied": "cultural_typology_matching",
+  "recommended_products": [
+    {
+      "product_id": "prod_tracunhaem_barro_04",
+      "artisan_name": "Mestre Nuca",
+      "score": 0.94
+    },
+    {
+      "product_id": "prod_caruaru_vitalino_09",
+      "artisan_name": "Família Vitalino",
+      "score": 0.89
+    }
+  ]
+}
+
+Teste 2: Foco em Mestre Artesão (RF-02)
+
+Comando:
+Bash
 
 curl -X 'POST' \
   'http://localhost:3000/recomendar_mestre_artesao' \
@@ -82,7 +108,31 @@ curl -X 'POST' \
   -H 'Content-Type: application/json' \
   -d '{"mestre_id": "mestre_vitalino", "limit": 4}'
 
-### Teste 3: Cold Start para Novos Visitantes (RF-03)
+Resultado Esperado:
+JSON
+
+{
+  "status": "success",
+  "strategy_applied": "master_artisan_focus",
+  "mestre_id": "mestre_vitalino",
+  "recommended_products": [
+    {
+      "product_id": "prod_caruaru_barro_01",
+      "artisan_name": "Família Vitalino",
+      "score": 0.98
+    },
+    {
+      "product_id": "prod_caruaru_vitalino_09",
+      "artisan_name": "Família Vitalino",
+      "score": 0.96
+    }
+  ]
+}
+
+Teste 3: Cold Start para Novos Visitantes (RF-03)
+
+Comando:
+Bash
 
 curl -X 'POST' \
   'http://localhost:3000/cold_start_populares' \
@@ -90,10 +140,97 @@ curl -X 'POST' \
   -H 'Content-Type: application/json' \
   -d '{"user_id": "usr_novo_1020", "limit": 6}'
 
-### Teste 4: Fallback por Cache (RF-04)
+Resultado Esperado:
+JSON
+
+{
+  "status": "success",
+  "strategy_applied": "cold_start_popular_items",
+  "user_id": "usr_novo_1020",
+  "recommended_products": [
+    {
+      "product_id": "prod_tracunhaem_barro_04",
+      "artisan_name": "Mestre Nuca",
+      "score": 1.0
+    },
+    {
+      "product_id": "prod_caruaru_barro_01",
+      "artisan_name": "Família Vitalino",
+      "score": 0.98
+    },
+    {
+      "product_id": "prod_petrolina_carranca_02",
+      "artisan_name": "Mestre Ana das Carrancas",
+      "score": 0.98
+    },
+    {
+      "product_id": "prod_gloria_mamulengo_08",
+      "artisan_name": "Mestre Zé de Vina",
+      "score": 0.98
+    },
+    {
+      "product_id": "prod_caruaru_vitalino_09",
+      "artisan_name": "Família Vitalino",
+      "score": 0.96
+    },
+    {
+      "product_id": "prod_bezerros_papangu_03",
+      "artisan_name": "Mestre Lula Vassourinha",
+      "score": 0.96
+    }
+  ]
+}
+
+Teste 4: Fallback por Cache (RF-04)
+
+Comando:
+Bash
 
 curl -X 'POST' \
   'http://localhost:3000/fallback_cache' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{}'
+
+Resultado Esperado:
+JSON
+
+{
+  "status": "fallback_ativo",
+  "message": "Serviço principal de IA indisponível. Retornando cache por polo criativo.",
+  "recommended_products": [
+    {
+      "product_id": "prod_caruaru_barro_01",
+      "creative_pole": "Caruaru",
+      "artisan_name": "Família Vitalino"
+    },
+    {
+      "product_id": "prod_tracunhaem_barro_04",
+      "creative_pole": "Tracunhaém",
+      "artisan_name": "Mestre Nuca"
+    },
+    {
+      "product_id": "prod_petrolina_carranca_02",
+      "creative_pole": "Petrolina",
+      "artisan_name": "Mestre Ana das Carrancas"
+    },
+    {
+      "product_id": "prod_pesqueira_renda_05",
+      "creative_pole": "Pesqueira",
+      "artisan_name": "Cooperativa das Rendeiras"
+    },
+    {
+      "product_id": "prod_bezerros_papangu_03",
+      "creative_pole": "Bezerros",
+      "artisan_name": "Mestre Lula Vassourinha"
+    },
+    {
+      "product_id": "prod_ibimirim_madeira_07",
+      "creative_pole": "Ibimirim",
+      "artisan_name": "Mestre Saúba"
+    },
+    {
+      "count": 7
+    }
+  ]
+}
