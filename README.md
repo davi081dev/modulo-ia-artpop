@@ -6,7 +6,7 @@
 
 ---
 
-## 👥 0. Informações da Squad
+## 👥 1. Informações da Squad
 * **Nome do Projeto:** ArtPop — Marketplace de Artesanato Pernambucano
 * **Turma:** ADS - Embarque Digital
 * **Grupo / Squad:** ArtPop
@@ -18,12 +18,12 @@
 
 ---
 
-## 📌 1. Visão Geral do Módulo
+## 📌 2. Visão Geral do Módulo
 Este repositório contém o **Módulo de Inteligência Artificial** desenvolvido para o ecossistema **ArtPop**. O sistema é focado na valorização dos mestres artesãos e polos criativos pernambucanos (como Caruaru, Tracunhaém e Petrolina), entregando recomendações dinâmicas, tratamento de novos usuários (*Cold Start*) e mecanismos de tolerância a falhas (*Fallback*).
 
 ---
 
-## ⚙️ 2. Arquitetura e Requisitos Funcionais (Endpoints)
+## ⚙️ 3. Arquitetura e Requisitos Funcionais (Endpoints)
 
 O serviço foi implementado utilizando **BentoML** e expõe 4 endpoints principais mapeados para os requisitos funcionais (RFs) da AV1:
 
@@ -36,7 +36,7 @@ O serviço foi implementado utilizando **BentoML** e expõe 4 endpoints principa
 
 ---
 
-## 🛠️ 3. Como Instalar e Executar (Do Zero)
+## 🛠️ 4. Como Instalar e Executar (Do Zero)
 
 ### Pré-requisitos
 * Linux, MacOS ou WSL2 (Ubuntu).
