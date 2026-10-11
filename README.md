@@ -62,19 +62,18 @@ Teste 1: Recomendação por Tipologia e Região (RF-01)
 
 Comando:
 
-curl -X 'POST' \
-  'http://localhost:3000/recomendar_tipologia_regiao' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "user_id": "usr_recife_8841",
-    "current_product_id": "prod_caruaru_barro_01",
-    "context": {
-      "typology": "cerâmica_de_barro",
-      "creative_pole": "Caruaru"
-    },
-    "limit": 4
-  }'
+$body = @{
+    user_id = "usr_recife_8841"
+    current_product_id = "prod_caruaru_barro_01"
+    context = @{
+        typology = "cerâmica_de_barro"
+        creative_pole = "Caruaru"
+    }
+    limit = 4
+} | ConvertTo-Json
+
+Invoke-RestMethod -Uri "http://localhost:3000/recomendar_tipologia_regiao" -Method Post -Headers @{"accept"="application/json"} -ContentType "application/json; charset=utf-8" -Body $body
+
 
 Resultado Esperado:
 
@@ -99,11 +98,13 @@ Teste 2: Foco em Mestre Artesão (RF-02)
 
 Comando:
 
-curl -X 'POST' \
-  'http://localhost:3000/recomendar_mestre_artesao' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -d '{"mestre_id": "mestre_vitalino", "limit": 4}'
+$body = @{
+    mestre_id = "mestre_vitalino"
+    limit = 4
+} | ConvertTo-Json
+
+Invoke-RestMethod -Uri "http://localhost:3000/recomendar_mestre_artesao" -Method Post -Headers @{"accept"="application/json"} -ContentType "application/json; charset=utf-8" -Body $body
+
 
 Resultado Esperado:
 
@@ -129,11 +130,13 @@ Teste 3: Cold Start para Novos Visitantes (RF-03)
 
 Comando:
 
-curl -X 'POST' \
-  'http://localhost:3000/cold_start_populares' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -d '{"user_id": "usr_novo_1020", "limit": 6}'
+$body = @{
+    user_id = "usr_novo_1020"
+    limit = 6
+} | ConvertTo-Json
+
+Invoke-RestMethod -Uri "http://localhost:3000/cold_start_populares" -Method Post -Headers @{"accept"="application/json"} -ContentType "application/json; charset=utf-8" -Body $body
+
 
 Resultado Esperado:
 
@@ -179,11 +182,10 @@ Teste 4: Fallback por Cache (RF-04)
 
 Comando:
 
-curl -X 'POST' \
-  'http://localhost:3000/fallback_cache' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -d '{}'
+$body = @{} | ConvertTo-Json
+
+Invoke-RestMethod -Uri "http://localhost:3000/fallback_cache" -Method Post -Headers @{"accept"="application/json"} -ContentType "application/json; charset=utf-8" -Body $body
+
 
 Resultado Esperado:
 
