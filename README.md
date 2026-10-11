@@ -57,7 +57,7 @@ cd modulo-ia-artpop
 uv venv
 ```
 ```bash
-source .venv/bin/activate
+.\.venv\Scripts\activate
 ```
 ```bash
 uv pip install bentoml
