@@ -46,7 +46,7 @@ O serviço foi implementado utilizando **BentoML** e expõe 4 endpoints principa
 
 # 1. Clonar o repositório
 ```bash
-git clone [https://github.com/davi081dev/modulo-ia-artpop.git](https://github.com/davi081dev/modulo-ia-artpop.git)
+git clone https://github.com/davi081dev/modulo-ia-artpop
 ```
 ```bash
 cd modulo-ia-artpop
